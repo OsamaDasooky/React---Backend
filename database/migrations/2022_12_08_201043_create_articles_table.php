@@ -17,25 +17,24 @@ return new class extends Migration
 
             $table->timestamps();
             $table->increments('id');
-            $table->text(`list_title`);
-            $table->text(`list_author`);
-            $table->date(`list_published_date`);
-            $table->text(`list_published_date_precision`);
-            $table->text(`list_link`);
-            $table->text(`list_clean_url`);
-            $table->text(`list_excerpt`);
+            $table->text("list_title");
+            $table->text("list_author")->nullable();
+            $table->date("list_published_date");
+            $table->text("list_published_date_precision");
+            $table->text("list_link");
+            $table->text("list_clean_url");
+            $table->text("list_excerpt");
             $table->longText("list_summary");
-            $table->text(`list_rights`);
-            $table->integer(`list_rank`);
-            $table->text(`list_topic`);
-            $table->text(`list_country`);
-            $table->text(`list_language`);
-            $table->text(`list_authors`);
-            $table->text(`list_media`);
-            $table->text(`list_is_opinion`);
-            $table->text(`list_twitter_account`);
-            $table->integer(`list_score`);
-            $table->text(`list_authors`);
+            $table->text("list_rights");
+            $table->integer("list_rank");
+            $table->text("list_topic");
+            $table->text("list_country");
+            $table->text("list_language");
+            $table->text("list_authors")->nullable();
+            $table->text("list_media");
+            $table->text("list_is_opinion");
+            $table->text("list_twitter_account")->nullable();
+            $table->integer("list_score");
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Article;
 use App\Models\Comment;
 use App\Models\Expectation;
 use Laravel\Sanctum\HasApiTokens;
@@ -54,5 +55,11 @@ class User extends Authenticatable
     public function expectations()
     {
         return $this->hasMany(Expectation::class);
+    }
+
+
+    public function saved_articles()
+    {
+        return $this->belongsToMany(Article::class, 'save', 'user_id', 'article_id')->withTimestamps();
     }
 }

@@ -8,7 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+    protected $fillable = [
 
+        'user_id',
+        'team_1',
+        'team_2',
+        'Competition',
+        'result',
+
+    ];
 
     public function expectations()
     {

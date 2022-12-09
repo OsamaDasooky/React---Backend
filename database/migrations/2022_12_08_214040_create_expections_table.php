@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('expectations', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->longText('expect');
+            $table->string('expect');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

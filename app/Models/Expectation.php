@@ -11,6 +11,11 @@ class Expectation extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'expect',
+
+    ];
     public function post()
     {
         return $this->belongsTo(Post::class);

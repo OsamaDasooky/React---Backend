@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('profile_image');
             $table->integer('points');
+            $table->string('role')->default('user');
+            $table->string('favTeam');
             $table->rememberToken();
             $table->timestamps();
         });

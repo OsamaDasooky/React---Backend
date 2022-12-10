@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +19,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+// ------------------- public endPoints ----------------------
+Route::post('/login',           [AuthController::class , 'userLogin' ]);
+Route::post('/register',        [AuthController::class , 'userRegister' ]);
+Route::post('/showArticles',        [AuthController::class , 'showArticles' ]);
 
-Route::post('/login', [AuthController::class , 'userLogin' ]);
+
+
+Route::middleware('auth:sanctum')->group(function (){
+    // update & delete =>  api/comment/:id
+    // create =>  api/comment/
+    Route::resource('/comment', CommentsController::class);
+});

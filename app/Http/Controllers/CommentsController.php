@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comments;
+use App\Models\Comment;
+
 use Illuminate\Http\Request;
+use App\Traits\HttpResponses;
+use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
+    use HttpResponses;
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,7 @@ class CommentsController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -35,8 +40,19 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'content' => 'required|string',
+            'article_id' => 'required|integer'
+        ]);
+        $comment =Comment::create([
+            'user_id' => Auth::user()->id,
+            'article_id' => $request->article_id,
+            'content' => $request->content
+        ]);
+
+        return $this->success('','comment created successfully',201);
     }
+
 
     /**
      * Display the specified resource.
@@ -67,19 +83,35 @@ class CommentsController extends Controller
      * @param  \App\Models\Comments  $comments
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comments $comments)
+    public function update(Request $request, Comment $comment)
     {
-        //
+        if (!$this->isAuthorize($comment)) {
+            return $this->error('','you are not authorize to update',403);
+        }
+        $request->validate([
+            'content' => 'required|string',
+        ]);
+        $comment->update([
+            'content' => $request->content
+        ]);
+
+        return $this->success('','comment updated successfully',200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Comments  $comments
+     * @param  \App\Models\Comment  $comments
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comments $comments)
+    public function destroy(Comment $comment)
     {
-        //
+        return $this->isAuthorize($comment) ? $comment->delete() : $this->error('','you are not authorize to delete this comment',403);
+    }
+
+     protected function isAuthorize($comment)
+    {
+       return Auth::user()->id == $comment->user_id ? true : false;
     }
 }
+    

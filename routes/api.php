@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Resources\ArticleResource;
+use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -26,8 +28,16 @@ Route::post('/showArticles',        [AuthController::class , 'showArticles' ]);
 
 
 
+
 Route::middleware('auth:sanctum')->group(function (){
     // update & delete =>  api/comment/:id
     // create =>  api/comment/
     Route::resource('/comment', CommentsController::class);
 });
+
+
+//articles Using Resources
+Route::get('/articles', function () {
+    return ArticleResource::collection(Article::all());
+});
+

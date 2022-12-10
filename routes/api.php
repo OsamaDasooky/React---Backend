@@ -21,7 +21,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+Route::post('/login', [AuthController::class , 'userLogin' ]);
+
+
 //articles Using Resources
 Route::get('/articles', function () {
     return ArticleResource::collection(Article::all());
 });
+

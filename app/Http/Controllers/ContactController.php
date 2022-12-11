@@ -14,7 +14,11 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $massages= Contact::all();
+        return[ 
+            'states' => 200,
+            'data' =>  $massages
+        ];
     }
 
     /**
@@ -35,7 +39,19 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "name" => "required",
+            "email" => "required|email",
+            "massage" => "required"
+          ]);
+
+        Contact::create($request->all());
+        return response(
+            [
+                "status" => 200,
+                "massage" => "Recive your massage"
+            ]
+            );
     }
 
     /**

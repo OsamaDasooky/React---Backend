@@ -7,6 +7,7 @@ use App\Http\Resources\ArticleResource;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // ------------------- public endPoints ----------------------
 Route::post('/login',           [AuthController::class , 'userLogin' ]);
 Route::post('/register',        [AuthController::class , 'userRegister' ]);
+
+//route for contact page
+Route::post('/Contact',[ContactController::class , 'store' ]);
+
+Route::get( '/all-massages',[ContactController::class , 'index' ]);
 
 
 

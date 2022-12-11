@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Comment;
+use App\Models\Expectation;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\New_;
 
 class PostsController extends Controller
 {
@@ -18,7 +23,16 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+       
+
+        return $this->success([
+           'posts' => Post::all()->count(),
+           'expectation' => Expectation::all()->count(),
+           'users' => User::all()->count(),
+           'news' => Article::all()->count(),
+           'cmments' => Comment::all()->count()
+
+        ]);
     }
 
     /**

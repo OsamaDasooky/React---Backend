@@ -36,7 +36,7 @@ class ArticleResource extends JsonResource
             'is_opinion' => $this->list_is_opinion,
             'twitter_account' => $this->list_twitter_account,
             'score' => $this->list_score,
-            'comments' => CommentResource::collection($this->comments),
+
 
         ];
     }

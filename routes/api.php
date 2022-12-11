@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\User;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResources;
 use Illuminate\Support\Facades\Route;
 use App\Http\Resources\ArticleResource;
 use App\Http\Controllers\AuthController;
@@ -23,13 +25,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 // ------------------- public endPoints ----------------------
-Route::post('/login',           [AuthController::class , 'userLogin' ]);
-Route::post('/register',        [AuthController::class , 'userRegister' ]);
+Route::post('/login',           [AuthController::class, 'userLogin']);
+Route::post('/register',        [AuthController::class, 'userRegister']);
 
 
 
 
-Route::middleware('auth:sanctum')->group(function (){
+Route::middleware('auth:sanctum')->group(function () {
     // update & delete =>  api/comment/:id
     // create =>  api/comment/
     Route::resource('/comment', CommentsController::class);
@@ -44,3 +46,7 @@ Route::get('/articles', function () {
     return ArticleResource::collection(Article::all());
 });
 
+
+Route::get('/user/{id}', function ($id) {
+    return new UserResources(User::findOrFail($id));
+});

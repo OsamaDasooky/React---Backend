@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
-
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
 
-class CommentsController extends Controller
+class PostsController extends Controller
 {
     use HttpResponses;
 
@@ -19,7 +18,7 @@ class CommentsController extends Controller
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -42,25 +41,24 @@ class CommentsController extends Controller
     {
         $request->validate([
             'content' => 'required|string',
-            'post_id' => 'required|integer'
+            'photo' => 'required|string'
         ]);
-        $comment =Comment::create([
+        $comment =Post::create([
             'user_id' => Auth::user()->id,
-            'post_id' => $request->post_id,
+            'photo' => $request->photo,
             'content' => $request->content
         ]);
 
         return $this->success('','comment created successfully',201);
     }
 
-
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Comments  $comments
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Comments $comments)
+    public function show($id)
     {
         //
     }
@@ -68,10 +66,10 @@ class CommentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Comments  $comments
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comments $comments)
+    public function edit($id)
     {
         //
     }
@@ -80,18 +78,19 @@ class CommentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Comments  $comments
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request,Post $post)
     {
-        if (!$this->isAuthorize($comment)) {
+        if (!$this->isAuthorize($post)) {
             return $this->error('','you are not authorize to update',403);
         }
+
         $request->validate([
             'content' => 'required|string',
         ]);
-        $comment->update([
+        $post->update([
             'content' => $request->content
         ]);
 
@@ -101,15 +100,15 @@ class CommentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Comment  $comments
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy(Post $post)
     {
-        return $this->isAuthorize($comment) ? $comment->delete() : $this->error('','you are not authorize to delete this comment',403);
+        return $this->isAuthorize($post) ? $post->delete() : $this->error('','you are not authorize to delete this comment',403);
     }
 
-     protected function isAuthorize($comment)
+    protected function isAuthorize($comment)
     {
        return Auth::user()->id == $comment->user_id ? true : false;
     }

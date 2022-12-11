@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Expection;
+use App\Models\Expectation;
 use Illuminate\Http\Request;
 
 class ExpectionController extends Controller
@@ -41,10 +41,10 @@ class ExpectionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Expection  $expection
+     * @param  \App\Models\Expectation  $expection
      * @return \Illuminate\Http\Response
      */
-    public function show(Expection $expection)
+    public function show(Expectation $expection)
     {
         //
     }
@@ -52,10 +52,10 @@ class ExpectionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Expection  $expection
+     * @param  \App\Models\Expectation  $expection
      * @return \Illuminate\Http\Response
      */
-    public function edit(Expection $expection)
+    public function edit(Expectation $expection)
     {
         //
     }
@@ -64,10 +64,10 @@ class ExpectionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Expection  $expection
+     * @param  \App\Models\Expectation  $expection
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Expection $expection)
+    public function update(Request $request, Expectation $expection)
     {
         //
     }
@@ -75,10 +75,10 @@ class ExpectionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Expection  $expection
+     * @param  \App\Models\Expectation  $expection
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Expection $expection)
+    public function destroy(Expectation $expection)
     {
         //
     }

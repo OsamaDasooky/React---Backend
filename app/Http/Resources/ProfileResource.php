@@ -2,9 +2,10 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\CommentResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResources extends JsonResource
+class ProfileResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -22,7 +23,8 @@ class UserResources extends JsonResource
             'profileImage' => $this->profile_image,
             'userPoints' => $this->points,
             'role' => $this->role,
-
+            'User_posts' => $this->posts,
+            'user_comments' => CommentResource::collection($this->comments),
         ];
     }
 }

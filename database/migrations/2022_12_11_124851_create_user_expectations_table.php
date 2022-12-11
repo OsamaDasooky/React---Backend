@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('user_expectations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string("team_1");
-            $table->string("team_2");
-            $table->string("result");
-            $table->string("Competition");
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('expectation_id');
+            $table->string('expect');
+            $table->foreign('user_id')->references('id')->on('users')->restrictOnDelete();
+            $table->foreign('expectation_id')->references('id')->on('expectations')->restrictOnDelete();
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('user_expectations');
     }
 };

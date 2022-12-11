@@ -3,9 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Post;
 use App\Models\Article;
 use App\Models\Comment;
-use App\Models\Expectation;
+use App\Models\SaveNew;
+use App\Models\UserExpectation;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -49,6 +51,11 @@ class User extends Authenticatable
 
 
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
     public function comments()
     {
         return $this->hasMany(Comment::class);
@@ -56,12 +63,11 @@ class User extends Authenticatable
 
     public function expectations()
     {
-        return $this->hasMany(Expectation::class);
+        return $this->hasMany(UserExpectation::class);
     }
 
-
-    public function saved_articles()
+    public function SavedNews()
     {
-        return $this->belongsToMany(Article::class, 'save', 'user_id', 'article_id')->withTimestamps();
+        return $this->hasMany(SaveNew::class);
     }
 }

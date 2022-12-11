@@ -31,9 +31,8 @@ class Article extends Model
         'list_twitter_account',
         'list_score',
     ];
-    public function comments()
+    public function SavedNews()
     {
-
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(SaveNew::class);
     }
 }

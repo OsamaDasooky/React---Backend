@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Resources\ArticleResource;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Resources\ArticleResource;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostsController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\ContactController;
 
@@ -25,7 +26,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // ------------------- public endPoints ----------------------
 Route::post('/login',           [AuthController::class , 'userLogin' ]);
 Route::post('/register',        [AuthController::class , 'userRegister' ]);
-Route::post('/showArticles',        [AuthController::class , 'showArticles' ]);
 
 //route for contact page
 Route::post('/Contact',[ContactController::class , 'store' ]);
@@ -39,6 +39,9 @@ Route::middleware('auth:sanctum')->group(function (){
     // update & delete =>  api/comment/:id
     // create =>  api/comment/
     Route::resource('/comment', CommentsController::class);
+    // update & delete =>  api/post/:id
+    // create =>  api/post
+    Route::resource('/post', PostsController::class);
 });
 
 

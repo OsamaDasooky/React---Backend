@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\Post;
 use App\Models\User;
+use App\Models\Expectation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Comment extends Model
+class UserExpectation extends Model
 {
     use HasFactory;
 
@@ -15,13 +15,15 @@ class Comment extends Model
     {
         return $this->belongsToMany(User::class);
     }
-    public function post()
+
+    public function expectations()
     {
-        return $this->belongsToMany(Post::class);
+        return $this->belongsToMany(Expectation::class);
     }
+
     protected $fillable = [
         'content',
-        'post_id',
-        'user_id',
+        'expectations_id',
+        'expect',
     ];
 }

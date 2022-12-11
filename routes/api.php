@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login',           [AuthController::class , 'userLogin' ]);
 Route::post('/register',        [AuthController::class , 'userRegister' ]);
 Route::post('/showArticles',        [AuthController::class , 'showArticles' ]);
+
+//route for contact page
+Route::post('/Contact',[ContactController::class , 'store' ]);
+
+Route::get( '/all-massages',[ContactController::class , 'index' ]);
 
 
 

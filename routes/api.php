@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Resources\ArticleResource;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostsController;
-use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\dashboardContrller;
 use App\Http\Controllers\PostController;
@@ -33,6 +34,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 // ------------------- public endPoints ----------------------
+
 Route::post('/login',           [AuthController::class, 'userLogin']);
 Route::post('/register',        [AuthController::class, 'userRegister']);
 
@@ -46,6 +48,7 @@ Route::get( '/all-massages',[ContactController::class , 'index' ]);
 
 
 
+// ------------------- authenticated endPoints ----------------------
 
 Route::middleware('auth:sanctum')->group(function () {
     // update & delete =>  api/comment/:id
@@ -54,6 +57,8 @@ Route::middleware('auth:sanctum')->group(function () {
     // update & delete =>  api/post/:id
     // create =>  api/post
     Route::resource('/post', PostsController::class);
+
+    Route::resource('/profile', ProfileController::class);
 });
 
 
@@ -99,11 +104,11 @@ Route::get('/delete-post/{post}', [dashboardContrller::class, 'deletePost']);
 
 // to get all comments
 Route::get('/all-comments', function() {
-    return CommentResource::collection(Comment::all()); //-------------> error pivot table something 
+    return CommentResource::collection(Comment::all()); //-------------> error pivot table something
 });
 // Route::get('/all-comments', [dashboardContrller::class, 'allComments']);
 
-// to delete a comment 
+// to delete a comment
 Route::delete('/delete-comment/{comment}', [dashboardContrller::class, 'deleteComment']);
 
 // to get all aritcles
@@ -114,7 +119,7 @@ Route::get('/all-articles', function(){
 //to update the articles
 Route::put('/update-article/{article}', [dashboardContrller::class, 'updateArticle']);
 
-//to add new article 
+//to add new article
 Route::post('/add-article', [dashboardContrller::class, 'addNewArticle']);
 
 // to delete an article

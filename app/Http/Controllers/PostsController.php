@@ -23,7 +23,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-       
+
 
         return $this->success([
            'posts' => Post::all()->count(),
@@ -100,7 +100,6 @@ class PostsController extends Controller
         if (!$this->isAuthorize($post)) {
             return $this->error('','you are not authorize to update',403);
         }
-
         $request->validate([
             'content' => 'required|string',
         ]);

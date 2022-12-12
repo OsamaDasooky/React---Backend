@@ -12,11 +12,11 @@ class SaveNew extends Model
 
     public function user()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
-    
-    public function articles()
-    {
-        return $this->belongsToMany(Article::class);
-    }
+
+    // public function articles()
+    // {
+    //     return $this->belongsToMany(Article::class);
+    // }
 }

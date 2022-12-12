@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Comment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -31,8 +32,8 @@ class Article extends Model
         'list_twitter_account',
         'list_score',
     ];
-    public function SavedNews()
+    public function user()
     {
-        return $this->hasMany(SaveNew::class);
+        return $this->belongsToMany(User::class);
     }
 }

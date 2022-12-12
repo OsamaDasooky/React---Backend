@@ -162,4 +162,26 @@ class dashboardContrller extends Controller
 
         return $this->success($article, 'aritcles updated successfully');
     }
+
+    public function addNewArticle(Request $request)
+    {
+        $newArticle = new Article;
+        $newArticle->list_author = $request->author;
+        $newArticle->list_title = $request->title;
+        $newArticle->list_media = 'need to be fixed';
+        $newArticle->list_excerpt = $request->excerpt;
+        $newArticle->list_summary = $request->summary;
+
+        $newArticle->save();
+
+        return $this->success('', 'new Article added successfully');
+    }
+
+    public function deleteArticle(Article $article)
+    {
+        $article->id = $article;
+        $article->delete();
+
+        return $this->success('', 'Article deleted successfully');
+    }
 }

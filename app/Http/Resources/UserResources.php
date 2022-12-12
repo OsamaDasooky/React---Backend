@@ -22,7 +22,6 @@ class UserResources extends JsonResource
             'profileImage' => $this->profile_image,
             'userPoints' => $this->points,
             'role' => $this->role,
-
         ];
     }
 }

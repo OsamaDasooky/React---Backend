@@ -1,7 +1,9 @@
 <?php
 
+use Dflydev\DotAccessData\Data;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -19,7 +21,7 @@ return new class extends Migration
             $table->increments('id');
             $table->text("list_title");
             $table->text("list_author")->nullable();
-            $table->date("list_published_date");
+            $table->date("list_published_date")->default(Date::now());
             $table->text("list_published_date_precision")->nullable();
             $table->text("list_link")->nullable();
             $table->text("list_clean_url")->nullable();

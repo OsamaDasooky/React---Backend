@@ -11,7 +11,6 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommentsController;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\dashboardContrller;
 use App\Http\Controllers\PostController;

@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Article;
+use App\Http\Resources\ArticleResource;
 use App\Http\Resources\CommentResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -25,6 +27,9 @@ class ProfileResource extends JsonResource
             'role' => $this->role,
             'User_posts' => PostResources::collection( $this->posts),
             'User_comments' => UserCommentResource::collection( $this->comments),
+            'saved_Articles' => ArticleResource::collection($this->articles)
+
+
         ];
     }
 }

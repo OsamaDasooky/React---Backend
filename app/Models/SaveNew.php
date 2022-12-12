@@ -15,8 +15,8 @@ class SaveNew extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function articles()
-    {
-        return $this->belongsTo(Article::class);
-    }
+    // public function articles()
+    // {
+    //     return $this->belongsToMany(Article::class);
+    // }
 }

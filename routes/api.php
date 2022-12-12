@@ -11,6 +11,12 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\dashboardContrller;
+use App\Http\Controllers\PostController;
+use App\Http\Resources\PostResourceAdmin;
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +61,31 @@ Route::get('/articles', function () {
     return ArticleResource::collection(Article::all());
 });
 
-
+// admin dashboard routes
 Route::get('/user/{id}', function ($id) {
     return new UserResources(User::findOrFail($id));
 });
+
+Route::get('/users', function () {
+    // dd('malek');
+    return UserResources::collection(User::all());
+});
+
+// delete user
+Route::get('/delete-user/{id}', [dashboardContrller::class, 'destroy']);
+
+// to get all counts in the home dashboard
+Route::get('/data-counts', [Controller::class, 'index']);
+
+//to get all pending posts
+Route::get('/pendingsPost', function() {
+    return PostResourceAdmin::collection(Post::where('status', 'pending')->get());
+});
+
+// to approve a post
+Route::put('/approve-post/{post}', [dashboardContrller::class, 'approve']);
+
+//to deny a post
+Route::put('/deny-post/{post}', [dashboardContrller::class, 'deny']);
+
+

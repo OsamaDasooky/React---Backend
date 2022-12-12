@@ -35,7 +35,7 @@ class ExpectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

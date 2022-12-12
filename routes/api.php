@@ -36,6 +36,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login',           [AuthController::class, 'userLogin']);
 Route::post('/register',        [AuthController::class, 'userRegister']);
 
+// google login
+Route::post('/google-register', [AuthController::class, 'googleRegister']);
+
 //route for contact page
 Route::post('/Contact',[ContactController::class , 'store' ]);
 
@@ -116,3 +119,4 @@ Route::post('/add-article', [dashboardContrller::class, 'addNewArticle']);
 
 // to delete an article
 Route::delete('/delete-article/{article}', [dashboardContrller::class, 'deleteArticle']);
+

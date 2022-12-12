@@ -66,8 +66,8 @@ class User extends Authenticatable
         return $this->hasMany(UserExpectation::class);
     }
 
-    public function SavedNews()
+    public function articles()
     {
-        return $this->hasMany(SaveNew::class);
+        return $this->belongsToMany(Article::class);
     }
 }

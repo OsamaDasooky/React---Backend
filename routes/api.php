@@ -110,3 +110,9 @@ Route::get('/all-articles', function(){
 
 //to update the articles
 Route::put('/update-article/{article}', [dashboardContrller::class, 'updateArticle']);
+
+//to add new article 
+Route::post('/add-article', [dashboardContrller::class, 'addNewArticle']);
+
+// to delete an article
+Route::delete('/delete-article/{article}', [dashboardContrller::class, 'deleteArticle']);

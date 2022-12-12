@@ -22,7 +22,7 @@ class UserExpectation extends Model
     }
 
     protected $fillable = [
-        'content',
+        'user_id',
         'expectations_id',
         'expect',
     ];

@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('expectations', function (Blueprint $table) {
             $table->increments('id');
             $table->string("team_1");
+            $table->string("team_1_picture");
             $table->string("team_2");
+            $table->string("team_2_picture");
             $table->string("result");
             $table->string("Competition");
             $table->timestamps();

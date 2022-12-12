@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PostResourceAdmin extends JsonResource
+class ExpectationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,12 +14,6 @@ class PostResourceAdmin extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'post_id' => $this->id,
-            'post_image' => $this->photo,
-            'post_content' => $this->content,
-            'user_info' => ['id' => $this->user->id, 'first_name' => $this->user->first_name],
-            'date' => $this->created_at,
-        ];
+        return parent::toArray($request);
     }
 }

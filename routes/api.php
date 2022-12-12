@@ -1,23 +1,27 @@
 <?php
 
+use App\Models\Post;
 use App\Models\User;
 use App\Models\Article;
+use App\Models\Comment;
+use App\Models\Expectation;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResources;
 use Illuminate\Support\Facades\Route;
 use App\Http\Resources\ArticleResource;
+use App\Http\Resources\CommentResource;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostsController;
+use App\Http\Resources\PostResourceAdmin;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Resources\ExpectationResource;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\dashboardContrller;
-use App\Http\Controllers\PostController;
-use App\Http\Resources\CommentResource;
-use App\Http\Resources\PostResourceAdmin;
-use App\Models\Comment;
-use App\Models\Post;
+use App\Http\Controllers\ExpectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,9 +46,9 @@ Route::post('/register',        [AuthController::class, 'userRegister']);
 Route::post('/google-register', [AuthController::class, 'googleRegister']);
 
 //route for contact page
-Route::post('/Contact',[ContactController::class , 'store' ]);
+Route::post('/Contact', [ContactController::class, 'store']);
 
-Route::get( '/all-massages',[ContactController::class , 'index' ]);
+Route::get('/all-massages', [ContactController::class, 'index']);
 
 
 
@@ -60,6 +64,19 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::resource('/profile', ProfileController::class);
 });
+
+
+
+
+//expectation Using Resources
+Route::get('/expectation', function () {
+    return ExpectationResource::collection(Expectation::all());
+});
+
+//expectation Using Resources
+Route::post('/addExpectation', [ExpectionController::class, 'store']);
+
+
 
 
 //articles Using Resources
@@ -84,7 +101,7 @@ Route::get('/delete-user/{id}', [dashboardContrller::class, 'destroy']);
 Route::get('/data-counts', [Controller::class, 'index']);
 
 //to get all pending posts
-Route::get('/pendingsPost', function() {
+Route::get('/pendingsPost', function () {
     return PostResourceAdmin::collection(Post::where('status', 'pending')->get());
 });
 
@@ -95,7 +112,7 @@ Route::put('/approve-post/{post}', [dashboardContrller::class, 'approve']);
 Route::put('/deny-post/{post}', [dashboardContrller::class, 'deny']);
 
 // to show all posts
-Route::get('/all-posts', function() {
+Route::get('/all-posts', function () {
     return PostResourceAdmin::collection(Post::where('status', 'approved')->get());
 });
 
@@ -103,8 +120,9 @@ Route::get('/all-posts', function() {
 Route::get('/delete-post/{post}', [dashboardContrller::class, 'deletePost']);
 
 // to get all comments
-Route::get('/all-comments', function() {
-    return CommentResource::collection(Comment::all()); //-------------> error pivot table something
+Route::get('/all-comments', function () {
+    return CommentResource::collection(Comment::all()); //-------------> error pivot table something 
+
 });
 // Route::get('/all-comments', [dashboardContrller::class, 'allComments']);
 
@@ -112,12 +130,13 @@ Route::get('/all-comments', function() {
 Route::delete('/delete-comment/{comment}', [dashboardContrller::class, 'deleteComment']);
 
 // to get all aritcles
-Route::get('/all-articles', function(){
+Route::get('/all-articles', function () {
     return ArticleResource::collection(Article::all());
 });
 
 //to update the articles
 Route::put('/update-article/{article}', [dashboardContrller::class, 'updateArticle']);
+
 
 //to add new article
 Route::post('/add-article', [dashboardContrller::class, 'addNewArticle']);

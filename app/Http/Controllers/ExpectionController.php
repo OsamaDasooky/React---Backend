@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Expectation;
+use App\Models\UserExpectation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExpectionController extends Controller
 {
@@ -24,7 +26,6 @@ class ExpectionController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -35,7 +36,21 @@ class ExpectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'expect' => 'required|string',
+
+        ]);
+
+
+
+        $exp = new UserExpectation;
+        $exp->user_id = $request->user_id; // Auth::user()->id,
+        $exp->expectation_id = $request->expectation_id;
+        $exp->expect = $request->expect;
+
+        $exp->save();
+        return $this->success('', 'comment created successfully', 201);
     }
 
     /**

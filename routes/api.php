@@ -14,7 +14,9 @@ use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\dashboardContrller;
 use App\Http\Controllers\PostController;
+use App\Http\Resources\CommentResource;
 use App\Http\Resources\PostResourceAdmin;
+use App\Models\Comment;
 use App\Models\Post;
 
 /*
@@ -87,4 +89,27 @@ Route::put('/approve-post/{post}', [dashboardContrller::class, 'approve']);
 //to deny a post
 Route::put('/deny-post/{post}', [dashboardContrller::class, 'deny']);
 
+// to show all posts
+Route::get('/all-posts', function() {
+    return PostResourceAdmin::collection(Post::where('status', 'approved')->get());
+});
 
+//to delete a post
+Route::get('/delete-post/{post}', [dashboardContrller::class, 'deletePost']);
+
+// to get all comments
+Route::get('/all-comments', function() {
+    return CommentResource::collection(Comment::all()); //-------------> error pivot table something 
+});
+// Route::get('/all-comments', [dashboardContrller::class, 'allComments']);
+
+// to delete a comment 
+Route::delete('/delete-comment/{comment}', [dashboardContrller::class, 'deleteComment']);
+
+// to get all aritcles
+Route::get('/all-articles', function(){
+    return ArticleResource::collection(Article::all());
+});
+
+//to update the articles
+Route::put('/update-article/{article}', [dashboardContrller::class, 'updateArticle']);

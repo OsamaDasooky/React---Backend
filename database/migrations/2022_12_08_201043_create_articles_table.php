@@ -20,21 +20,21 @@ return new class extends Migration
             $table->text("list_title");
             $table->text("list_author")->nullable();
             $table->date("list_published_date");
-            $table->text("list_published_date_precision");
-            $table->text("list_link");
-            $table->text("list_clean_url");
+            $table->text("list_published_date_precision")->nullable();
+            $table->text("list_link")->nullable();
+            $table->text("list_clean_url")->nullable();
             $table->text("list_excerpt");
             $table->longText("list_summary");
-            $table->text("list_rights");
-            $table->integer("list_rank");
-            $table->text("list_topic");
-            $table->text("list_country");
-            $table->text("list_language");
+            $table->text("list_rights")->nullable();
+            $table->integer("list_rank")->nullable();
+            $table->text("list_topic")->nullable();
+            $table->text("list_country")->nullable();
+            $table->text("list_language")->nullable();
             $table->text("list_authors")->nullable();
             $table->text("list_media");
-            $table->text("list_is_opinion");
+            $table->text("list_is_opinion")->nullable();
             $table->text("list_twitter_account")->nullable();
-            $table->integer("list_score");
+            $table->integer("list_score")->nullable();
         });
     }
 

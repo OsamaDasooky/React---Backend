@@ -17,8 +17,12 @@ class PostResources extends JsonResource
     {
         return
         [
+            'postId' => $this->id,
+            'postOwner' => $this->user->first_name . " " . $this->user->last_name ,
+            'post_Owner_photo' => $this->user->profile_image ,
             'postPhoto' => $this->photo,
             'content' => $this->content,
+            'created_at' => $this->created_at,
             'postComments' => CommentResource::collection($this->comments)
         ];
     }

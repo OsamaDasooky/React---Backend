@@ -34,6 +34,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 // ------------------- public endPoints ----------------------
+
 Route::post('/login',           [AuthController::class, 'userLogin']);
 Route::post('/register',        [AuthController::class, 'userRegister']);
 
@@ -44,6 +45,7 @@ Route::get( '/all-massages',[ContactController::class , 'index' ]);
 
 
 
+// ------------------- authenticated endPoints ----------------------
 
 Route::middleware('auth:sanctum')->group(function () {
     // update & delete =>  api/comment/:id
@@ -99,11 +101,11 @@ Route::get('/delete-post/{post}', [dashboardContrller::class, 'deletePost']);
 
 // to get all comments
 Route::get('/all-comments', function() {
-    return CommentResource::collection(Comment::all()); //-------------> error pivot table something 
+    return CommentResource::collection(Comment::all()); //-------------> error pivot table something
 });
 // Route::get('/all-comments', [dashboardContrller::class, 'allComments']);
 
-// to delete a comment 
+// to delete a comment
 Route::delete('/delete-comment/{comment}', [dashboardContrller::class, 'deleteComment']);
 
 // to get all aritcles

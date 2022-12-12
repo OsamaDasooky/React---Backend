@@ -23,8 +23,8 @@ class ProfileResource extends JsonResource
             'profileImage' => $this->profile_image,
             'userPoints' => $this->points,
             'role' => $this->role,
-            'User_posts' => $this->posts,
-            'user_comments' => CommentResource::collection($this->comments),
+            'User_posts' => PostResources::collection( $this->posts),
+            'User_comments' => UserCommentResource::collection( $this->comments),
         ];
     }
 }

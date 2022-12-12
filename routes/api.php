@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Resources\ArticleResource;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostsController;
-use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CommentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,8 @@ Route::middleware('auth:sanctum')->group(function () {
     // update & delete =>  api/post/:id
     // create =>  api/post
     Route::resource('/post', PostsController::class);
+
+    Route::resource('/profile', ProfileController::class);
 });
 
 

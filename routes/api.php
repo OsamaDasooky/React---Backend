@@ -6,7 +6,7 @@ use App\Models\Article;
 use App\Models\Comment;
 use App\Models\Expectation;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+
 use App\Http\Resources\UserResources;
 use Illuminate\Support\Facades\Route;
 use App\Http\Resources\ArticleResource;
@@ -143,4 +143,3 @@ Route::post('/add-article', [dashboardContrller::class, 'addNewArticle']);
 
 // to delete an article
 Route::delete('/delete-article/{article}', [dashboardContrller::class, 'deleteArticle']);
-

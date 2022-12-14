@@ -19,8 +19,11 @@ return new class extends Migration
             $table->string("team_1_picture");
             $table->string("team_2");
             $table->string("team_2_picture");
-            $table->string("result");
+            $table->string("date");
+            $table->string("result")->default("-");
+            $table->string("points");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

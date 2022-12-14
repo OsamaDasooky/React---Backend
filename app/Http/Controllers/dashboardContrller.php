@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Comment;
+use App\Models\Expectation;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -125,7 +126,7 @@ class dashboardContrller extends Controller
 
         return $this->success('',  'post deleted successfully');
     }
-    
+
     // public function allComments()
     // {
     //     $allComments = Comment::all();
@@ -162,6 +163,23 @@ class dashboardContrller extends Controller
 
         return $this->success($article, 'aritcles updated successfully');
     }
+    public function updateExpectation(Expectation $expectation, Request $request)
+    {
+
+        $expectation->update([
+
+            'points' => $request->points,
+            'result' => $request->result,
+            'date' => $request->date,
+            'team_2_picture' => $request->team_2_picture,
+            'team_2' => $request->team_2,
+            'team_1_picture' => $request->team_1_picture,
+            'team_1' => $request->team_1,
+
+        ]);
+
+        return $this->success($expectation, 'expectation updated successfully');
+    }
 
     public function addNewArticle(Request $request)
     {
@@ -181,6 +199,15 @@ class dashboardContrller extends Controller
     {
         $article->id = $article;
         $article->delete();
+
+        return $this->success('', 'Article deleted successfully');
+    }
+
+    public function deleteExpectation(Expectation $expectation)
+    {
+
+        $expectation->id = $expectation;
+        $expectation->delete();
 
         return $this->success('', 'Article deleted successfully');
     }

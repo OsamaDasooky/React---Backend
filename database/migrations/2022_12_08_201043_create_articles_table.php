@@ -37,6 +37,7 @@ return new class extends Migration
             $table->text("list_is_opinion")->nullable();
             $table->text("list_twitter_account")->nullable();
             $table->integer("list_score")->nullable();
+            $table->softDeletes();
         });
     }
 

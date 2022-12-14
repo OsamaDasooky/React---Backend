@@ -52,6 +52,34 @@ class ExpectionController extends Controller
         $exp->save();
         return $this->success('', 'comment created successfully', 201);
     }
+    public function addExpectation(Request $request)
+    {
+
+        $exp =  $request->validate([
+            'team_1_picture' => 'required|string',
+            'team_2' => 'required|string',
+            'team_2_picture' => 'required|string',
+            'team_1' => 'required|string',
+            'date' => 'required|string',
+            'result' => 'required|string',
+            'points' => 'required|string',
+
+        ]);
+        Expectation::create($exp);
+
+
+        $exp = new UserExpectation;
+        $exp->points = $request->points; // Auth::user()->id,
+        $exp->result = $request->result;
+        $exp->team_2 = $request->date;
+        $exp->team_2_picture = $request->team_2_picture;
+        $exp->team_1 = $request->team_1;
+        $exp->team_1_picture = $request->team_1_picture;
+
+
+        $exp->save();
+        return $this->success('', 'comment created successfully', 201);
+    }
 
     /**
      * Display the specified resource.

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('google_id')->unique()->nullable();
+            $table->string('google_id')->unique()->nullable();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('user_id');
             $table->longText('content');
             $table->text('photo');
-            $table->enum('status', ['approved', 'rejected', 'pending']);
+            $table->enum('status', ['approved', 'rejected', 'pending'])->default('pending');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();

@@ -54,6 +54,7 @@ class ExpectionController extends Controller
     }
     public function addExpectation(Request $request)
     {
+        // dd($request);
 
         $exp =  $request->validate([
             'team_1_picture' => 'required|string',
@@ -68,17 +69,26 @@ class ExpectionController extends Controller
         Expectation::create($exp);
 
 
-        $exp = new UserExpectation;
-        $exp->points = $request->points; // Auth::user()->id,
-        $exp->result = $request->result;
-        $exp->team_2 = $request->date;
-        $exp->team_2_picture = $request->team_2_picture;
-        $exp->team_1 = $request->team_1;
-        $exp->team_1_picture = $request->team_1_picture;
+        // $exp = new UserExpectation;
 
 
-        $exp->save();
-        return $this->success('', 'comment created successfully', 201);
+
+        // $exp->points = $request->points; // Auth::user()->id,
+        // $exp->result = $request->result;
+        // $exp->date = $request->date;
+        // // $exp->team_2_picture =
+        // // base64_encode(file_get_contents($request->file('team_2_picture')));
+
+        // $exp->team_1 = $request->team_1;
+        // $exp->team_2 = $request->team_2;
+
+        // $exp->team_1_picture = $request->team_1_picture;
+        // $exp->team_2_picture = $request->team_2_picture;
+        // //  base64_encode(file_get_contents($request->file('team_1_picture')));
+
+
+        // $exp->save();
+        return $this->success('', 'Expectation created successfully', 201);
     }
 
     /**

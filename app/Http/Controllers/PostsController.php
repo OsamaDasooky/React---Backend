@@ -26,11 +26,11 @@ class PostsController extends Controller
 
 
         return $this->success([
-           'posts' => Post::all()->count(),
-           'expectation' => Expectation::all()->count(),
-           'users' => User::all()->count(),
-           'news' => Article::all()->count(),
-           'cmments' => Comment::all()->count()
+            'posts' => Post::all()->count(),
+            'expectation' => Expectation::all()->count(),
+            'users' => User::all()->count(),
+            'news' => Article::all()->count(),
+            'cmments' => Comment::all()->count()
 
         ]);
     }
@@ -55,15 +55,13 @@ class PostsController extends Controller
     {
         $request->validate([
             'content' => 'required|string',
-            'photo' => 'required|string'
         ]);
-        $comment =Post::create([
+        $comment = Post::create([
             'user_id' => Auth::user()->id,
-            'photo' => $request->photo,
             'content' => $request->content
         ]);
 
-        return $this->success('','comment created successfully',201);
+        return $this->success('', 'comment created successfully', 201);
     }
 
     /**
@@ -95,10 +93,10 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Post $post)
+    public function update(Request $request, Post $post)
     {
         if (!$this->isAuthorize($post)) {
-            return $this->error('','you are not authorize to update',403);
+            return $this->error('', 'you are not authorize to update', 403);
         }
         $request->validate([
             'content' => 'required|string',
@@ -107,7 +105,7 @@ class PostsController extends Controller
             'content' => $request->content
         ]);
 
-        return $this->success('','comment updated successfully',200);
+        return $this->success('', 'comment updated successfully', 200);
     }
 
     /**
@@ -118,11 +116,11 @@ class PostsController extends Controller
      */
     public function destroy(Post $post)
     {
-        return $this->isAuthorize($post) ? $post->delete() : $this->error('','you are not authorize to delete this comment',403);
+        return $this->isAuthorize($post) ? $post->delete() : $this->error('', 'you are not authorize to delete this comment', 403);
     }
 
     protected function isAuthorize($comment)
     {
-       return Auth::user()->id == $comment->user_id ? true : false;
+        return Auth::user()->id == $comment->user_id ? true : false;
     }
 }

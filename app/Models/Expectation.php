@@ -18,7 +18,10 @@ class Expectation extends Model
     protected $fillable = [
         'team_1',
         'team_2',
-        'Competition',
+        'team_2_picture',
+        'team_1_picture',
+        'points',
         'result',
+        "date"
     ];
 }

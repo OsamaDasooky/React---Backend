@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Models\UserExpectation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Expectation extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     public function userExpectations()
     {
@@ -17,7 +18,10 @@ class Expectation extends Model
     protected $fillable = [
         'team_1',
         'team_2',
-        'Competition',
+        'team_2_picture',
+        'team_1_picture',
+        'points',
         'result',
+        "date"
     ];
 }

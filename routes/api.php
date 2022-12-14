@@ -75,7 +75,7 @@ Route::get('/expectation', function () {
 });
 
 //expectation Using Resources
-Route::post('/addExpectation', [ExpectionController::class, 'store']);
+Route::post('/addUserExpectation', [ExpectionController::class, 'store']);
 
 
 
@@ -84,6 +84,14 @@ Route::post('/addExpectation', [ExpectionController::class, 'store']);
 Route::get('/articles', function () {
     return ArticleResource::collection(Article::all());
 });
+
+
+
+
+
+
+
+
 
 // admin dashboard routes
 Route::get('/user/{id}', function ($id) {
@@ -149,3 +157,10 @@ Route::post('/add-article', [dashboardContrller::class, 'addNewArticle']);
 // to delete an article
 Route::delete('/delete-article/{article}', [dashboardContrller::class, 'deleteArticle']);
 
+
+//TO delete Expectation
+Route::delete('/delete-expectation/{expectation}', [dashboardContrller::class, 'deleteExpectation']);
+//to update Expectation
+Route::put('/expectation/{expectation}', [dashboardContrller::class, 'updateExpectation']);
+//add expectations
+Route::post('/addExpectation', [ExpectionController::class, 'addExpectation']);

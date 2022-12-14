@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('expect');
             $table->foreign('user_id')->references('id')->on('users')->restrictOnDelete();
             $table->foreign('expectation_id')->references('id')->on('expectations')->restrictOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

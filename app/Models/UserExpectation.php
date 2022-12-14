@@ -14,12 +14,12 @@ class UserExpectation extends Model
 
     public function user()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function expectations()
     {
-        return $this->belongsToMany(Expectation::class);
+        return $this->belongsTo(Expectation::class);
     }
 
     protected $fillable = [

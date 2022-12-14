@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->longText('content');
-            $table->text('photo');
+            // $table->text('photo');
             $table->enum('status', ['approved', 'rejected', 'pending'])->default('pending');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -77,12 +77,14 @@ class AuthController extends Controller
             ]
         );
 
+
         // Create user
         $user = User::create($formFields);
 
         return $this->success([
             'user' => new UserResources(User::where('email', $user->email)->first()),
             'token' => $user->createToken('API Token of ' . $user->name)->plainTextToken //for return only plainTextToken without it will return all token record from personal_access_tokens
+
         ]);
     }
 }

@@ -55,11 +55,9 @@ class PostsController extends Controller
     {
         $request->validate([
             'content' => 'required|string',
-            'photo' => 'required|string'
         ]);
         $comment =Post::create([
             'user_id' => Auth::user()->id,
-            'photo' => $request->photo,
             'content' => $request->content
         ]);
 

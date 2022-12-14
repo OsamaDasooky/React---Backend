@@ -6,7 +6,9 @@ use App\Models\Article;
 use App\Models\Comment;
 use App\Models\Expectation;
 use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PostResources;
 use App\Http\Resources\UserResources;
 use Illuminate\Support\Facades\Route;
 use App\Http\Resources\ArticleResource;
@@ -16,10 +18,9 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostsController;
 use App\Http\Resources\PostResourceAdmin;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Resources\ExpectationResource;
 use App\Http\Controllers\CommentsController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\dashboardContrller;
 use App\Http\Controllers\ExpectionController;
 
@@ -115,13 +116,17 @@ Route::put('/deny-post/{post}', [dashboardContrller::class, 'deny']);
 Route::get('/all-posts', function () {
     return PostResourceAdmin::collection(Post::where('status', 'approved')->get());
 });
+// to show all posts FOR USER
+Route::get('/allPosts', function () {
+    return  PostResources::collection(Post::where('status', 'approved')->orderByDesc('created_at')->get());
+});
 
 //to delete a post
 Route::get('/delete-post/{post}', [dashboardContrller::class, 'deletePost']);
 
 // to get all comments
 Route::get('/all-comments', function () {
-    return CommentResource::collection(Comment::all()); //-------------> error pivot table something 
+    return CommentResource::collection(Comment::all()); //-------------> error pivot table something
 
 });
 // Route::get('/all-comments', [dashboardContrller::class, 'allComments']);

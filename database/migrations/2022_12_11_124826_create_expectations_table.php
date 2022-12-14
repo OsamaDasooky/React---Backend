@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("team_2");
             $table->string("team_2_picture");
             $table->string("result");
+            $table->date('date');
             $table->timestamps();
         });
     }

@@ -18,6 +18,7 @@ class PostResources extends JsonResource
         return
         [
             'postId' => $this->id,
+            'postOwnerId' => $this->user->id ,
             'postOwner' => $this->user->first_name . " " . $this->user->last_name ,
             'post_Owner_photo' => $this->user->profile_image ,
             'postPhoto' => $this->photo,

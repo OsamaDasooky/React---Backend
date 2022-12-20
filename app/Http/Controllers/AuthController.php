@@ -73,7 +73,7 @@ class AuthController extends Controller
                 'last_name' => ['required', 'string'],
                 'profile_image' => ['required', 'string'],
                 'email' => ['required', 'email', 'unique:users'],
-                'google_id' => ['required', 'numeric'],
+                'google_id' => ['required' ],
             ]
         );
 

@@ -23,6 +23,7 @@ class PostResources extends JsonResource
             'post_Owner_photo' => $this->user->profile_image ,
             'postPhoto' => $this->photo,
             'content' => $this->content,
+            'status' => $this->status,
             'created_at' => $this->created_at,
             'postComments' => CommentResource::collection($this->comments)
         ];

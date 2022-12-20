@@ -36,6 +36,10 @@ class ExpectionController extends Controller
      */
     public function store(Request $request)
     {
+        // dd(UserExpectation::where('expectation_id' ,$request->expectation_id)->where('user_id',$request->user_id)->first());
+        if (UserExpectation::where('expectation_id' ,$request->expectation_id)->where('user_id',$request->user_id)->first()) {
+            return $this->error('', 'you are already  expatiate this event', 403);
+        }
 
         $request->validate([
             'expect' => 'required|string',
@@ -50,7 +54,7 @@ class ExpectionController extends Controller
         $exp->expect = $request->expect;
 
         $exp->save();
-        return $this->success('', 'comment created successfully', 201);
+        return $this->success('', 'your expatiation reserved successfully', 201);
     }
     public function addExpectation(Request $request)
     {
